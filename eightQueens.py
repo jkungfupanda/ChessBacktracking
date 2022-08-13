@@ -5,7 +5,7 @@ import copy
 
 class EightQueens:
 
-    list_of_outputs = []
+    outputs = []
 
     def __init__(self, board):
         """
@@ -32,7 +32,7 @@ class EightQueens:
             # Make a copy of the given Board
             result = copy.deepcopy(b)
             result.addQueen(p)
-            print(result)
+            EightQueens.outputs.append(result)
             if result.ok():
                 result = EightQueens.__placeQueens(col+1, result)
                 if result != None:
@@ -40,6 +40,3 @@ class EightQueens:
 
         return None
         # failed, time to backtrack
-
-
-
