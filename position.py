@@ -1,4 +1,6 @@
 class Position:
+
+
 	def __init__(self, r, c):
 		self.row = r
 		self.col = c
@@ -20,3 +22,6 @@ class Position:
 		self.row + self.col == other.row + other.col or 
 		self.row - self.col == other.row - other.col
 		)
+
+	def __eq__(self, o: object) -> bool:
+		return self.row == o.row and self.col == o.col
