@@ -5,13 +5,15 @@ import copy
 
 class EightQueens:
 
+    list_of_outputs = []
+
     def __init__(self, board):
         """
         Initialize an EightQueens with a given Board.
         """
 
         self.board = board
-        print(EightQueens.__placeQueens(0, board))
+        EightQueens.__placeQueens(0, board)
             
 
     def __placeQueens(col, b):
@@ -20,12 +22,12 @@ class EightQueens:
         """
 
         # base case
-        if col == Board.SIZE:
+        if col == b.size:
             return b
 
         # Attempt to place a queen in each row of the
         # given column.
-        for row in range(0, Board.SIZE):
+        for row in range(0, b.size):
             p = Position(row, col)
             # Make a copy of the given Board
             result = copy.deepcopy(b)
@@ -40,5 +42,4 @@ class EightQueens:
         # failed, time to backtrack
 
 
-b = Board()
-x = EightQueens(b)
+

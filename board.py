@@ -7,13 +7,12 @@ class Board:
     @author (James Peirano and Izhar Ali)  
     """
 
-    # size of the board
-    SIZE = 4
 
-    def __init__(self):
+    def __init__(self, size):
         """
         Initialize a Board with no queens.
         """
+        self.size = size
         self.queenPositions = []
 
 
@@ -45,8 +44,8 @@ class Board:
         """
 
         result = ""
-        for row in range(Board.SIZE):
-            for col in range(Board.SIZE):
+        for row in range(self.size):
+            for col in range(self.size):
                 p = Position(row,col)
                 if(p in self.queenPositions):
                     result += "Q "
