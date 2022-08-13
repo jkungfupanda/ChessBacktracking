@@ -1,5 +1,4 @@
 from position import Position
-from eightQueens import EightQueens
 
 # A Board has a List of Positions, on which there are queens.
 # @author (James Peirano and Izhar Ali)
@@ -8,7 +7,7 @@ class Board:
     # Positions on which there are queens
     
     #queens should really be called queenPositions
-
+    SIZE = 4
 
     # Default constructor
     def __init__(self):
@@ -27,13 +26,12 @@ class Board:
     # * are attacking each other.
     # """
     def ok(self) -> bool:
-        p: Position
-        other: Position
+        firstQueen: Position
+        otherQueen: Position
 
-        for i in range(self.queens.size()-1):
+        for i in range(len(self.queens)-1):
             firstQueen = self.queens[i]
-            j = i + 1
-            for j in range(self.queens.size()):
+            for j in range(i + 1, len(self.queens)):
                 otherQueen = self.queens[j]
                 if (firstQueen.isAttacking(otherQueen)):
                     return False
@@ -42,8 +40,8 @@ class Board:
 
     def __str__(self):
         result = ""
-        for row in range(EightQueens.SIZE):
-            for col in range(EightQueens.SIZE):
+        for row in range(Board.SIZE):
+            for col in range(Board.SIZE):
                 p = Position(row,col)
                 if(p in self.queens):
                     result += "Q "
