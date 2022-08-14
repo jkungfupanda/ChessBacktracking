@@ -2,41 +2,41 @@ from eightQueens import EightQueens
 from board import Board
 import pygame
 import os
-# import time
+from constants import *
+from chessBoard import ChessBoard
+import time
 
-WIDTH,HEIGHT=900,500
+
+
+
 WIN=pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption("N QUEENS PROBLEM")
+
+
+# chess_board = pygame.image.load(os.path.join("chess_board.png"))
+# chess_board = pygame.transform.scale(chess_board,(700,350))
+
+
 w_queen = pygame.image.load(os.path.join("white_queen.png"))
 w_queen= pygame.transform.scale(w_queen,(25,20))
-chess_board = pygame.image.load(os.path.join("chess_board.png"))
-w_queen= pygame.transform.scale(w_queen,(200,50))
-
-
-
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-YELLOW = (255, 255, 0)
-FPS = 60
-
-
-class chessBoard:
-    rect = (113, 113, 525, 525)
-    startX = rect[0]
-    startY = rect[1]
 
 
 
 
 
-def draw_window():
-    WIN.fill(YELLOW)
 
-    WIN.blit(chess_board,(1,1))
-    WIN.blit(w_queen,(10,10))
 
-    pygame.display.update()
+# def create_board(size):
+#    field = [[0 for _ in range(size)]for _ in range(size)]
+
+
+# def draw_window():
+#     WIN.fill(YELLOW)
+
+#     WIN.blit(chess_board,(100,60))
+#     WIN.blit(w_queen,(10,10))
+
+#     pygame.display.update()
 
 
 
@@ -44,13 +44,22 @@ def draw_window():
 def main(size):
     clock=pygame.time.Clock()
 
+    board = ChessBoard()
+
     run=True
     while run:
         clock.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run=False
-        draw_window()
+
+
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                pass
+                  
+        board.draw_squares(WIN, size)
+        pygame.display.update()
+        #draw_window()
 
 
     pygame.quit()
@@ -73,4 +82,6 @@ def main(size):
 
 if __name__ == "__main__":
     size = int(input("Enter the size of the board: "))
+
+    time.sleep(2)
     main(size)
