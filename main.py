@@ -17,8 +17,7 @@ pygame.display.set_caption("N QUEENS PROBLEM")
 # chess_board = pygame.transform.scale(chess_board,(700,350))
 
 
-w_queen = pygame.image.load(os.path.join("white_queen.png"))
-w_queen= pygame.transform.scale(w_queen,(25,20))
+
 
 
 
@@ -83,5 +82,10 @@ def main(size):
 if __name__ == "__main__":
     size = int(input("Enter the size of the board: "))
 
-    time.sleep(2)
     main(size)
+
+
+
+#how to move queens
+#write program to tell the user if the queen is not attacking other queens
+#if they win the game it says they won,,, if not backtracking algorithm solves for them
