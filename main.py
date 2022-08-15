@@ -1,7 +1,7 @@
-from Board import Board
-from ChessBoard import ChessBoard
-from Constants import *
-from EightQueens import EightQueens
+from board import Board
+from chessBoard import ChessBoard
+from constants import *
+from eightQueens import EightQueens
 
 
 def main(size, make_board=True, run_eight_queens=False):
