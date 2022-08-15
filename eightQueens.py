@@ -1,22 +1,20 @@
-from position import Position
-from board import Board
+from Position import Position
 import copy
 
 
 class EightQueens:
-
+    # class variable
     outputs = []
 
     def __init__(self, board):
         """
-        Initialize an EightQueens with a given Board.
+        Initialize an EightQueens with the given Board.
         """
-
         self.board = board
-        EightQueens.__placeQueens(0, board)
-            
+        EightQueens.__place_queens(0, board)
 
-    def __placeQueens(col, b):
+    @classmethod
+    def __place_queens(cls, col, b):
         """
         Place queens on the board.
         """
@@ -25,18 +23,20 @@ class EightQueens:
         if col == b.size:
             return b
 
-        # Attempt to place a queen in each row of the
-        # given column.
+        # Attempt to place a queen in each row of the given column.
         for row in range(0, b.size):
             p = Position(row, col)
+
             # Make a copy of the given Board
             result = copy.deepcopy(b)
-            result.addQueen(p)
+            result.add_queen(p)
             EightQueens.outputs.append(result)
-            if result.ok():
-                result = EightQueens.__placeQueens(col+1, result)
-                if result != None:
-                    return result 		# success
 
-        return None
+            if result.ok():
+                result = EightQueens.__place_queens(col + 1, result)
+                if result is not None:
+                    # success
+                    return result
+
         # failed, time to backtrack
+        return None

@@ -9,21 +9,19 @@ class Position:
 		"""
 		self.row = r
 		self.col = c
-		
 
-	def isAttacking(self, other):
+	def is_attacking(self, other):
 		"""
 		@return true iff a queen on this Position is attaching a queen on the other Position.
 		"""
 		return (
-		self.row == other.row or 
-		self.col == other.col or 
-		self.row + self.col == other.row + other.col or 
+		self.row == other.row or
+		self.col == other.col or
+		self.row + self.col == other.row + other.col or
 		self.row - self.col == other.row - other.col
 		)
 
-
-	def __eq__(self, o: object) -> bool:
+	def __eq__(self, o) -> bool:
 		"""
 		@return true iff this Position is equal to the other Position.
 		"""
