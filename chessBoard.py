@@ -1,4 +1,5 @@
 from constants import *
+import time
 
 
 class ChessBoard:
@@ -15,6 +16,10 @@ class ChessBoard:
         :param size: size of each square.
         """
 
+        listOfQueens = []
+        listOfRedSquares = []
+        listOfYellowSquares = []
+
         rows = size
         cols = size
         num_queens = size
@@ -28,6 +33,31 @@ class ChessBoard:
         for row in range(border, rows + border):
             for col in range(row % 2 + border - 1, cols + border - 1, 2):
                 pygame.draw.rect(win, RED, (row * SQUARE_SIZE, col * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
+                listOfRedSquares.append((row * SQUARE_SIZE, col * SQUARE_SIZE))
+
+            for col in range((row + 1) % 2 + border - 1, cols + border - 1, 2):   
+                pygame.draw.rect(win, YELLOW, (row * SQUARE_SIZE, col * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE))
+                listOfYellowSquares.append((row * SQUARE_SIZE, col * SQUARE_SIZE))
+
+
+        # coordinates = zip(listOfRedSquares, listOfYellowSquares)
+        # [print(i) for i in coordinates]
+
+        coordinates = [(x, y) for x, y in zip(listOfRedSquares, listOfYellowSquares)]
+        # for i, j in coordinates:
+        #     x = 1
+        #     if x == 36:
+        #         break
+        #     print(i, j, end=" ")
+        #     x += 1
+        print(coordinates)
+
+
+        # [print(i) for i in listOfRedSquares]
+        # print("\n")
+        # print("yellow starts here")
+        # [print(i) for i in listOfYellowSquares]
+        # time.sleep(300)
 
         queens_padding = 0
         for i in range(num_queens):
