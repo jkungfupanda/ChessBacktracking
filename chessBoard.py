@@ -1,5 +1,6 @@
 from constants import *
 import time
+from queen import Queen
 
 
 class ChessBoard:
@@ -7,22 +8,23 @@ class ChessBoard:
         self.board = []
         self.selected_piece = None
         rect = (113, 113, 525, 525)
+        self.listOfQueens = []
 
-    @classmethod
-    def draw_squares(cls, win, size):
+
+    def draw_squares(self, win, size):
         """
         Draw squares of size 'size' on the window.
         :param win: the given window of size height x width.
         :param size: size of each square.
         """
 
-        listOfQueens = []
         listOfRedSquares = []
         listOfYellowSquares = []
 
         rows = size
         cols = size
         num_queens = size
+        queenId = 1
 
         board_size = size * SQUARE_SIZE
         remaining_space = HEIGHT - board_size
@@ -43,14 +45,14 @@ class ChessBoard:
         # coordinates = zip(listOfRedSquares, listOfYellowSquares)
         # [print(i) for i in coordinates]
 
-        coordinates = [(x, y) for x, y in zip(listOfRedSquares, listOfYellowSquares)]
+        # coordinates = [(x, y) for x, y in zip(listOfRedSquares, listOfYellowSquares)]
         # for i, j in coordinates:
         #     x = 1
         #     if x == 36:
         #         break
         #     print(i, j, end=" ")
         #     x += 1
-        print(coordinates)
+        # print(coordinates)
 
 
         # [print(i) for i in listOfRedSquares]
@@ -63,9 +65,13 @@ class ChessBoard:
         for i in range(num_queens):
             x = space_on_sides + queens_padding
             y = space_on_sides + (HEIGHT - remaining_space)
-
-            win.blit(queen_img, (x, y))
+            queen = Queen(x,y,queenId)
+            self.listOfQueens.append(queen)
+            win.blit(queen.image, (queen.rect.x, queen.rect.y))
             queens_padding += board_size / size
+            queenId +=1
+            # if (queenId < size):
+            #     print(queen.id,queen.rect.x, queen.rect.y)
 
     """
     def draw_squares(self, win, size):

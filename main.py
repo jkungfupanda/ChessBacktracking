@@ -5,6 +5,7 @@ from eightQueens import EightQueens
 import pygame, sys
 from pygame.locals import *
 import math
+import time
 
 
 
@@ -23,7 +24,8 @@ def main(size, make_board=True, run_eight_queens=False):
         clock = pygame.time.Clock()
         chess_board = ChessBoard()
 
-        mx, my = pygame.mouse.get_pos()
+
+        
 
 
         run = True
@@ -32,9 +34,22 @@ def main(size, make_board=True, run_eight_queens=False):
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     run = False
-                # if event.type == pygame.MOUSEBUTTONDOWN:
-                #     m_x, m_y = pygame.mouse.get_pos()
-                #         for queen in queens: #for each queen
+
+                chess_board.draw_squares(window, size)
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        pos = pygame.mouse.get_pos()
+                        x = pos[0]
+                        y = pos[1]
+                        print(x,y)
+                        for queen in chess_board.listOfQueens:
+                            queenx = queen.rect.x + QUEEN_SIZE/2
+                            queeny = queen.rect.y + QUEEN_SIZE/2
+                            dis=math.sqrt((x- queenx)**2+(y-queeny)**2)
+                            if (dis < QUEEN_SIZE/1.5):
+                                print("you clicked a queen")
+
                 #             dis=math.sqrt((x-m_x)**2+(y-m_y)**2) #distance mouse is from border of each queen
                 #                 if dis<RADIUS:              # if mouse is within the borders of one of the queens
                     
@@ -48,7 +63,9 @@ def main(size, make_board=True, run_eight_queens=False):
                     
 
 
-            chess_board.draw_squares(window, size)
+            
+            
+
             pygame.display.update()
             # draw_window()
 
