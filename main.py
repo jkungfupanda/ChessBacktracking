@@ -6,6 +6,7 @@ import pygame, sys
 from pygame.locals import *
 import math
 import time
+from queen import Queen
 
 
 
@@ -23,8 +24,8 @@ def main(size, make_board=True, run_eight_queens=False):
 
         clock = pygame.time.Clock()
         chess_board = ChessBoard()
-
-
+        chess_board.draw_squares(window, size, False)
+        listOfQueens = chess_board.listOfQueens
         
 
 
@@ -35,7 +36,7 @@ def main(size, make_board=True, run_eight_queens=False):
                 if event.type == pygame.QUIT:
                     run = False
 
-                chess_board.draw_squares(window, size)
+                
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 1:
@@ -43,13 +44,42 @@ def main(size, make_board=True, run_eight_queens=False):
                         x = pos[0]
                         y = pos[1]
                         print(x,y)
-                        for queen in chess_board.listOfQueens:
+                        for queen in listOfQueens:
                             queenx = queen.rect.x + QUEEN_SIZE/2
                             queeny = queen.rect.y + QUEEN_SIZE/2
                             dis=math.sqrt((x- queenx)**2+(y-queeny)**2)
-                            if (dis < QUEEN_SIZE/1.5):
-                                print("you clicked a queen")
+                            if (dis < QUEEN_SIZE/1.8):
+                                queen.clicked = True
+                                print("you clicked Queen " + str(queen.id))
+                                # queen.updatePosition(x,y)
+                                # queen.rect.x = x -(queen.rect.width/2)
+                                # queen.rect.y = y -(queen.rect.height/2)
+                                # pygame.display.update()
 
+
+                            
+                if event.type == pygame.MOUSEBUTTONUP:
+                    for queen in listOfQueens:
+                        queen.clicked=False
+
+
+                for queen in listOfQueens:
+                    if queen.clicked == True:
+                        pos = pygame.mouse.get_pos()
+                        x = pos[0]
+                        y = pos[1]
+                        # queen.rect.x = x -(queen.rect.width/2)
+                        # queen.rect.y = y -(queen.rect.height/2)
+                        chess_board.draw_queen(window, Queen(x,y, queen.id))
+
+                                # queen.rect.x = x -(queen.rect.width/2)
+                                # queen.rect.y = y -(queen.rect.height/2)
+                
+                
+                
+                
+
+                                
                 #             dis=math.sqrt((x-m_x)**2+(y-m_y)**2) #distance mouse is from border of each queen
                 #                 if dis<RADIUS:              # if mouse is within the borders of one of the queens
                     
@@ -94,7 +124,7 @@ if __name__ == "__main__":
     c. get the x and y coordinates of each of the squares on the board
     d. If the queen is close to a defined square on the board then place the queen there...else return the queen to it's original posiiton
 2. write program to tell the user if the queen is not attacking other queens
-3. if they win the game it says they won,,, if not backtracking algorithm solves for them
+3. if they win the game it says they won(if answer is same as backtracking answer),,, if not backtracking algorithm solves for them
 """
 
 
