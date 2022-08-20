@@ -51,10 +51,10 @@ def main(size, make_board=True, run_eight_queens=False):
                             if (dis < QUEEN_SIZE/1.8):
                                 queen.clicked = True
                                 print("you clicked Queen " + str(queen.id))
-                                # queen.updatePosition(x,y)
+                                queen.updatePosition(x,y,window)
                                 # queen.rect.x = x -(queen.rect.width/2)
                                 # queen.rect.y = y -(queen.rect.height/2)
-                                # pygame.display.update()
+                                pygame.display.update()
 
 
                             
@@ -63,14 +63,14 @@ def main(size, make_board=True, run_eight_queens=False):
                         queen.clicked=False
 
 
-                for queen in listOfQueens:
-                    if queen.clicked == True:
-                        pos = pygame.mouse.get_pos()
-                        x = pos[0]
-                        y = pos[1]
-                        # queen.rect.x = x -(queen.rect.width/2)
-                        # queen.rect.y = y -(queen.rect.height/2)
-                        chess_board.draw_queen(window, Queen(x,y, queen.id))
+                # for queen in listOfQueens:
+                #     if queen.clicked == True:
+                #         pos = pygame.mouse.get_pos()
+                #         x = pos[0]
+                #         y = pos[1]
+                #         # queen.rect.x = x -(queen.rect.width/2)
+                #         # queen.rect.y = y -(queen.rect.height/2)
+                #         chess_board.draw_queen(window, Queen(x,y, queen.id))
 
                                 # queen.rect.x = x -(queen.rect.width/2)
                                 # queen.rect.y = y -(queen.rect.height/2)
