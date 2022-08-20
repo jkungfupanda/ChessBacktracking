@@ -24,43 +24,110 @@ def main(size, make_board=True, run_eight_queens=False):
 
         clock = pygame.time.Clock()
         chess_board = ChessBoard()
-        chess_board.draw_squares(window, size, False)
+        chess_board.draw_squares(window, size, True)
         listOfQueens = chess_board.listOfQueens
-        
+        # smallQueen = Queen(100,100,window)
+
+        group = pygame.sprite.Group([
+            # Queen(window.get_width() // 3, window.get_height() // 3, window),
+            # Queen(window.get_width() * 2 // 3, window.get_height() // 3, window),
+            # Queen(window.get_width() // 3, window.get_height() * 2 // 3, window),
+            # Queen(window.get_width() * 2// 3, window.get_height() * 2 // 3, window),
+
+            
+
+        ])
+
+        for queen in listOfQueens:
+            group.add(queen)
+
+
+
+
+
+
 
 
         run = True
         while run:
             clock.tick(FPS)
-            for event in pygame.event.get():
+            event_list = pygame.event.get()
+
+            for event in event_list:
                 if event.type == pygame.QUIT:
                     run = False
 
+                group.update(event_list)
+                chess_board.draw_squares(window, size, False)
+                # window.fill(0)
+                group.draw(window)
+
+                # if event.type == pygame.MOUSEBUTTONDOWN:
+                #     if event.button == 1:
+                #         pos = pygame.mouse.get_pos()
+                #         x = pos[0]
+                #         y = pos[1]
+                #         print(x,y)
+                #         for queen in listOfQueens:
+                #             queenx = queen.rect.x + QUEEN_SIZE/2
+                #             queeny = queen.rect.y + QUEEN_SIZE/2
+                #             dis=math.sqrt((x- queenx)**2+(y-queeny)**2)
+                #             if (dis < QUEEN_SIZE/1.8):
+                #                 queen.update(event_list)
+                #                 print("you clicked a Queen ")
+
+
+
+
+                        
                 
 
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    if event.button == 1:
-                        pos = pygame.mouse.get_pos()
-                        x = pos[0]
-                        y = pos[1]
-                        print(x,y)
-                        for queen in listOfQueens:
-                            queenx = queen.rect.x + QUEEN_SIZE/2
-                            queeny = queen.rect.y + QUEEN_SIZE/2
-                            dis=math.sqrt((x- queenx)**2+(y-queeny)**2)
-                            if (dis < QUEEN_SIZE/1.8):
-                                queen.clicked = True
-                                print("you clicked Queen " + str(queen.id))
-                                queen.updatePosition(x,y,window)
-                                # queen.rect.x = x -(queen.rect.width/2)
-                                # queen.rect.y = y -(queen.rect.height/2)
-                                pygame.display.update()
+
+
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                # if event.type == pygame.MOUSEBUTTONDOWN:
+                #     if event.button == 1:
+                #         pos = pygame.mouse.get_pos()
+                #         x = pos[0]
+                #         y = pos[1]
+                #         print(x,y)
+                #         for queen in listOfQueens:
+                #             queenx = queen.rect.x + QUEEN_SIZE/2
+                #             queeny = queen.rect.y + QUEEN_SIZE/2
+                #             dis=math.sqrt((x- queenx)**2+(y-queeny)**2)
+                #             if (dis < QUEEN_SIZE/1.8):
+                #                 queen.clicked = True
+                #                 print("you clicked Queen " + str(queen.id))
+                #                 queen.updatePosition(x,y,window)
+                #                 # queen.rect.x = x -(queen.rect.width/2)
+                #                 # queen.rect.y = y -(queen.rect.height/2)
+                #                 pygame.display.update()
 
 
                             
-                if event.type == pygame.MOUSEBUTTONUP:
-                    for queen in listOfQueens:
-                        queen.clicked=False
+                # if event.type == pygame.MOUSEBUTTONUP:
+                #     for queen in listOfQueens:
+                #         queen.clicked=False
 
 
                 # for queen in listOfQueens:
@@ -93,11 +160,9 @@ def main(size, make_board=True, run_eight_queens=False):
                     
 
 
-            
-            
 
             pygame.display.update()
-            # draw_window()
+
 
         pygame.quit()
 
@@ -143,3 +208,11 @@ def draw_window():
     WIN.blit(w_queen,(10,10))
     pygame.display.update()
 """
+
+
+
+
+
+
+
+    

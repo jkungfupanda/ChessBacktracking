@@ -74,6 +74,12 @@ group = pygame.sprite.Group([
     SpriteObject(window.get_width() * 2 // 3, window.get_height() // 3, (0, 255, 0)),
     SpriteObject(window.get_width() // 3, window.get_height() * 2 // 3, (0, 0, 255)),
     SpriteObject(window.get_width() * 2// 3, window.get_height() * 2 // 3, (255, 255, 0)),
+
+
+
+
+
+    
 ])
 
 
