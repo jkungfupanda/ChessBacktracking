@@ -8,6 +8,7 @@ def main(size):
 
     [print(i) for i in x.outputs]
 
+    print('Hello')
     print("-----------------------------")
     print("Number of iterations: " + str(len(x.outputs)))
     print("Final board: ")
